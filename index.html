@@ -1,0 +1,120 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Strike</title>html
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: white;
+  margin: 0;
+  text-align: center;
+}html
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #1c1c1c;
+}
+html
+.hero {
+  font-size: 28px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}html
+input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+}html
+.question {
+  background: #1c1c1c;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+</style>
+
+html
+</head>
+<body>
+
+<div class="topbar">
+  <div>Shadow Strike</div>
+  <button onclick="toggleTheme()">🌙</button>
+</div>
+
+<div class="hero">
+  SHADOW STRIKE
+</div>
+
+<div class="container">
+
+  <input id="questionInput" placeholder="Type your message...">
+  <button onclick="addQuestion()">Post</button>
+
+html
+  <div id="questionsList"></div>
+
+</div>
+html
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js";
+
+// 🔑 YOUR KEYS HERE
+const supabaseUrl = "PASTE_PROJECT_URL"https://jshmrxrnsnacugpmjrvi.supabase.co/rest/v1/";
+const supabaseKey = "PASTE_ANON_KEY"sb_publishable_opn39UelaXZaWEl9txO6XQ_vzPZNQ4-";
+
+const supabase = createClient(supabaseUrl, supabaseKey);html
+async function loadMessages() {
+  const { data } = await supabase
+    .from("messages")
+    .select("*")
+    .order("id", { ascending: false });
+
+  const list = document.getElementById("questionsList");
+  list.innerHTML = "";
+
+  data.forEach(msg => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = "<h3>" + msg.text + "</h3>";
+    list.appendChild(div);
+  });
+}
+
+window.addQuestion = async function () {
+  const input = document.getElementById("questionInput");
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  await supabase.from("messages").insert([{ text }]);  input.value = "";
+  loadMessages();
+};
+
+window.toggleTheme = function () {
+  document.body.classList.toggle("light");
+};
+
+loadMessages();
+
+</script>
+
+</body>
+</html>
+
