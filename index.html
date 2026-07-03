@@ -1,0 +1,48 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Strike</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div><strong>Shadow Strike</strong></div>
+  <button onclick="toggleTheme()">🌙 / ☀️</button>
+</div>
+
+<!-- TITLE -->
+<div class="hero">
+  <h1>SHADOW STRIKE</h1>
+</div>
+
+<!-- MAIN AREA -->
+<div class="container">
+
+  <h2>Ask a Question</h2>
+
+  <!-- INPUT -->
+  <input 
+    id="questionInput" 
+    type="text" 
+    placeholder="Type your question..."
+  >
+
+  <!-- BUTTON -->
+  <button onclick="addQuestion()">Post Question</button>
+
+  <!-- POSTS -->
+  <div id="questionsList"></div>
+
+</div>
+
+<!-- IMPORTANT: JS MUST BE LAST -->
+<script src="app.js"></script>
+
+</body>
+</html>
