@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Strike</title>
+</head>
+
+<body style="margin:0; background:#050505; overflow:hidden; font-family:Arial; color:white;">
+
+<!-- BACKGROUND CANVAS -->
+<canvas id="bg"></canvas>
+
+<!-- PARTICLES CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- UI -->
+<div id="ui" style="
+position:fixed;
+inset:0;
+z-index:10;
+text-align:center;
+pointer-events:none;
+">
+
+<div style="padding-top:90px;">
+
+<h1 style="font-size:70px; text-shadow:0 0 20px white;">
+SHADOW STRIKE
+</h1>
+
+<p style="opacity:0.8;">Upcoming Roblox Game</p>
+
+<br>
+
+<a href="https://www.roblox.com/share?code=1c9d13905ba0eb44952a8a942150a77a&type=ExperienceDetails"
+style="
+pointer-events:auto;
+display:inline-block;
+margin:10px;
+padding:12px 25px;
+background:white;
+color:black;
+border-radius:10px;
+text-decoration:none;
+box-shadow:0 0 25px white;
+font-weight:bold;
+">
+Get Beta
+</a>
+
+<a href="https://discord.gg/uSXRCw32f"
+style="
+pointer-events:auto;
+display:inline-block;
+margin:10px;
+padding:12px 25px;
+background:#5865F2;
+color:white;
+border-radius:10px;
+text-decoration:none;
+box-shadow:0 0 25px #5865F2;
+font-weight:bold;
+">
+Discord
+</a>
+
+</div>
+
+</div>
+
+<script>
+/* ================= STRIPES BACKGROUND ================= */
+
+const bg = document.getElementById("bg");
+const btx = bg.getContext("2d");
+
+let w = window.innerWidth;
+let h = window.innerHeight;
+
+bg.width = w;
+bg.height = h;
+
+window.onresize = () => {
+    w = bg.width = window.innerWidth;
+    h = bg.height = window.innerHeight;
+};
+
+let offset = 0;
+
+function drawStripes(){
+
+    btx.clearRect(0,0,w,h);
+
+    // dark base
+    btx.fillStyle = "#050505";
+    btx.fillRect(0,0,w,h);
+
+    offset += 0.4;
+
+    let spacing = 45;
+
+    for(let i=-w; i<w; i+=spacing){
+
+        let x = i + (offset % spacing);
+
+        btx.strokeStyle = "rgba(255,255,255,0.06)";
+        btx.lineWidth = 2;
+
+        btx.beginPath();
+        btx.moveTo(x,0);
+        btx.lineTo(x+300,h);
+        btx.stroke();
+    }
+
+    requestAnimationFrame(drawStripes);
+}
+
+drawStripes();
+
+
+/* ================= PARTICLES ================= */
+
+const pc = document.getElementById("particles");
+const ctx = pc.getContext("2d");
+
+pc.width = w;
+pc.height = h;
+
+window.onresize = () => {
+    pc.width = window.innerWidth;
+    pc.height = window.innerHeight;
+};
+
+let mouse = {x:null,y:null};
+
+window.onmousemove = e=>{
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+};
+
+let particles = [];
+
+for(let i=0;i<180;i++){
+    particles.push({
+        x:Math.random()*w,
+        y:Math.random()*h,
+        vx:(Math.random()-0.5)*0.6,
+        vy:(Math.random()-0.5)*0.6,
+        r:0.8 + Math.random()*1.2
+    });
+}
+
+function animate(){
+
+    ctx.clearRect(0,0,w,h);
+
+    for(let p of particles){
+
+        let dx = p.x - mouse.x;
+        let dy = p.y - mouse.y;
+        let dist = Math.sqrt(dx*dx+dy*dy);
+
+        if(dist < 140){
+            p.x += dx / dist * 2.5;
+            p.y += dy / dist * 2.5;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x<0) p.x=w;
+        if(p.x>w) p.x=0;
+        if(p.y<0) p.y=h;
+        if(p.y>h) p.y=0;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+        ctx.fillStyle = "rgba(255,255,255,0.7)";
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = "white";
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
