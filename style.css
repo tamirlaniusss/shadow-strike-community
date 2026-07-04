@@ -1,0 +1,196 @@
+css
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    height:100%;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050505;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND STRIPES
+========================= */
+
+body{
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+
+    background:
+    repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.06) 0px,
+        rgba(255,255,255,0.06) 1px,
+        transparent 1px,
+        transparent 24px
+    );
+}
+
+/* =========================
+   GLOW EFFECT
+========================= */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+
+    background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(255,255,255,0.05), transparent 60%);
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+    position:relative;
+    z-index:1;
+    max-width:900px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1{
+    font-size:80px;
+    font-weight:900;
+    letter-spacing:7px;
+    text-transform:uppercase;
+
+    text-shadow:
+        0 0 18px rgba(255,255,255,0.25),
+        0 0 50px rgba(255,255,255,0.12);
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.subtitle{
+    font-size:20px;
+    margin-top:10px;
+    color:#cfcfcf;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.beta-btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:16px 42px;
+
+    background:white;
+    color:black;
+    font-weight:800;
+    font-size:18px;
+
+    border-radius:14px;
+    text-decoration:none;
+
+    transition:0.25s ease;
+
+    box-shadow:0 0 30px rgba(255,255,255,0.25);
+}
+
+.beta-btn:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 70px rgba(255,255,255,0.45);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+h2{
+    margin-top:70px;
+    font-size:32px;
+    letter-spacing:2px;
+}
+
+ul{
+    list-style:none;
+    margin-top:20px;
+}
+
+li{
+    font-size:18px;
+    margin:10px 0;
+    color:#dcdcdc;
+}
+
+.about{
+    margin-top:20px;
+    font-size:17px;
+    line-height:1.6;
+    color:#cfcfcf;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    width:70%;
+    margin:60px auto;
+    background:rgba(255,255,255,0.1);
+}
+
+/* =========================
+   DEVELOPERS HOVER
+========================= */
+
+.dev{
+    display:inline-block;
+    margin:8px;
+    padding:8px 16px;
+    border-radius:10px;
+
+    color:#d8d8d8;
+    cursor:pointer;
+
+    transition:0.25s ease;
+}
+
+.dev:hover{
+    color:white;
+    background:rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.35),
+        0 0 40px rgba(255,255,255,0.15);
+
+    transform:scale(1.08);
+}
+
+
+If you want next upgrade, I can make it:
+- animated moving stripes (slow cinematic motion)
+- neon cyberpunk version
+- scrolling parallax background
+- “official Roblox studio page” look
+
+Just tell me 👍
