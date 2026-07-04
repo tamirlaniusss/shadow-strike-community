@@ -1,0 +1,127 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+    text-align:center;
+    min-height:100vh;
+    overflow-x:hidden;
+    background:#070707;
+    position:relative;
+}
+
+/* diagonal stripe background */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+
+    background:
+    repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 1px,
+        transparent 1px,
+        transparent 24px
+    );
+}
+
+/* soft glow overlay */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background:
+    radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(circle at bottom, rgba(255,255,255,0.05), transparent 60%);
+}
+
+/* main container */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+/* title */
+h1{
+    font-size:76px;
+    font-weight:900;
+    letter-spacing:6px;
+    margin-bottom:10px;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,0.25),
+        0 0 40px rgba(255,255,255,0.12);
+}
+
+/* subtitle */
+.subtitle{
+    font-size:22px;
+    color:#cfcfcf;
+    margin-bottom:40px;
+}
+
+/* beta button */
+.beta-btn{
+    display:inline-block;
+    padding:16px 42px;
+    font-size:20px;
+    font-weight:700;
+    color:black;
+    background:white;
+    border-radius:14px;
+    text-decoration:none;
+    transition:0.25s ease;
+
+    box-shadow:0 0 30px rgba(255,255,255,0.25);
+}
+
+.beta-btn:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 0 60px rgba(255,255,255,0.45);
+}
+
+/* sections */
+h2{
+    margin-top:70px;
+    font-size:32px;
+    letter-spacing:2px;
+}
+
+ul{
+    list-style:none;
+    margin-top:20px;
+}
+
+li{
+    font-size:20px;
+    margin:10px 0;
+    color:#ddd;
+}
+
+/* about text */
+.about{
+    margin-top:20px;
+    font-size:18px;
+    color:#cfcfcf;
+    line-height:1.6;
+}
+
+/* divider */
+hr{
+    border:none;
+    height:1px;
+    background:rgba(255,255,255,0.1);
+    margin:60px auto;
+    width:70%;
+}
