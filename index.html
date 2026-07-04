@@ -1,0 +1,307 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Strike</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    height:100%;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050505;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* ================= BACKGROUND ================= */
+
+body{
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+
+    background:
+    repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.06) 0px,
+        rgba(255,255,255,0.06) 1px,
+        transparent 1px,
+        transparent 24px
+    );
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+
+    background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(255,255,255,0.05), transparent 60%);
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    position:relative;
+    z-index:1;
+    max-width:900px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+/* ================= TITLE ================= */
+
+h1{
+    font-size:80px;
+    font-weight:900;
+    letter-spacing:7px;
+    text-transform:uppercase;
+
+    text-shadow:
+        0 0 18px rgba(255,255,255,0.25),
+        0 0 50px rgba(255,255,255,0.12);
+}
+
+.subtitle{
+    font-size:20px;
+    margin-top:10px;
+    color:#cfcfcf;
+}
+
+/* ================= BUTTONS ================= */
+
+.beta-btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:16px 42px;
+
+    background:white;
+    color:black;
+    font-weight:800;
+    font-size:18px;
+
+    border-radius:14px;
+    text-decoration:none;
+
+    transition:0.25s ease;
+
+    box-shadow:0 0 30px rgba(255,255,255,0.25);
+}
+
+.beta-btn:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 70px rgba(255,255,255,0.45);
+}
+
+.discord-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:16px 42px;
+
+    background:#5865F2;
+    color:white;
+
+    font-weight:800;
+    font-size:18px;
+
+    border-radius:14px;
+    text-decoration:none;
+
+    transition:0.25s ease;
+
+    box-shadow:0 0 30px rgba(88,101,242,0.35);
+}
+
+.discord-btn:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 60px rgba(88,101,242,0.6);
+}
+
+/* ================= SECTIONS ================= */
+
+h2{
+    margin-top:70px;
+    font-size:32px;
+    letter-spacing:2px;
+}
+
+ul{
+    list-style:none;
+    margin-top:20px;
+}
+
+li{
+    font-size:18px;
+    margin:10px 0;
+    color:#dcdcdc;
+}
+
+.about{
+    margin-top:20px;
+    font-size:17px;
+    line-height:1.6;
+    color:#cfcfcf;
+}
+
+hr{
+    border:none;
+    height:1px;
+    width:70%;
+    margin:60px auto;
+    background:rgba(255,255,255,0.1);
+}
+
+/* ================= DEVELOPERS ================= */
+
+.dev{
+    display:inline-block;
+    margin:8px;
+    padding:8px 16px;
+
+    border-radius:10px;
+
+    color:#d8d8d8;
+    text-decoration:none;
+    cursor:pointer;
+
+    transition:0.25s ease;
+}
+
+.dev:hover{
+    color:white;
+    background:rgba(255,255,255,0.08);
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.35),
+        0 0 40px rgba(255,255,255,0.15);
+    transform:scale(1.08);
+}
+
+/* ================= GALLERY (3D ROUND) ================= */
+
+.gallery{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.gallery img{
+    width:340px;
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,0.12);
+
+    object-fit:cover;
+
+    transition:0.25s ease;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,0.65),
+        0 10px 20px rgba(0,0,0,0.4),
+        0 0 15px rgba(255,255,255,0.06);
+}
+
+.gallery img:hover{
+    transform:translateY(-8px) scale(1.06);
+
+    box-shadow:
+        0 35px 70px rgba(0,0,0,0.75),
+        0 15px 30px rgba(0,0,0,0.5),
+        0 0 30px rgba(255,255,255,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>SHADOW STRIKE</h1>
+
+<p class="subtitle">Upcoming Roblox Game</p>
+
+<a class="beta-btn"
+href="https://www.roblox.com/share?code=1c9d13905ba0eb44952a8a942150a77a&type=ExperienceDetails&stamp=1783168145138"
+target="_blank">
+Beta is Out
+</a>
+
+<br>
+
+<a class="discord-btn"
+href="https://discord.gg/uSXRCw32f"
+target="_blank">
+Join Discord
+</a>
+
+<hr>
+
+<h2>Genre</h2>
+<ul>
+<li>FPS</li>
+<li>Modern</li>
+<li>Shooter</li>
+</ul>
+
+<hr>
+
+<h2>About</h2>
+<p class="about">
+Shadow Strike is a new Roblox project currently under development.
+</p>
+
+<hr>
+
+<h2>Screenshots</h2>
+
+<div class="gallery">
+    <img src="https://cdn.discordapp.com/attachments/1326944191661473805/1523044957525512424/image.png">
+</div>
+
+<hr>
+
+<h2>Developers</h2>
+
+<div>
+    <a class="dev" href="https://www.roblox.com/users/4727450633/profile" target="_blank">kinglo0630</a>
+    <a class="dev" href="https://www.roblox.com/users/3228252272/profile" target="_blank">arsenalarmsrace</a>
+    <a class="dev" href="https://www.roblox.com/users/3794194684/profile" target="_blank">llcat_mokll</a>
+    <a class="dev" href="https://www.roblox.com/users/7598643097/profile" target="_blank">robloxianb6g7a7e4m</a>
+    <a class="dev" href="https://www.roblox.com/users/9692538055/profile" target="_blank">s8hha</a>
+    <a class="dev" href="https://www.roblox.com/users/1067270566/profile" target="_blank">cedeeboy0415</a>
+    <a class="dev" href="https://www.roblox.com/users/1870187410/profile" target="_blank">joeykdk</a>
+    <a class="dev" href="https://www.roblox.com/users/9667145010/profile" target="_blank">tamirlaniusss_0</a>
+</div>
+
+<hr>
+
+<h2>Coming Soon</h2>
+<ul>
+<li>Tags</li>
+<li>Groups</li>
+<li>Live Chat</li>
+<li>Mobile App</li>
+</ul>
+
+</div>
+
+</body>
+</html>
