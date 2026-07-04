@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Strike</title>
+
+<style>
+html, body{
+    margin:0;
+    padding:0;
+    font-family:Arial;
+    background:#050505;
+    color:white;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    min-height:100%;
+}
+
+/* IMPORTANT: makes page height match background system */
+body{
+    min-height:100vh;
+}
+
+/* CANVAS FIX (KEY FIX HERE) */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    display:block;
+}
+
+/* ensure layering */
+#bg{z-index:0;}
+#particles{z-index:1;}
+
+/* glow fog */
+html::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(circle at center,
+    rgba(255,255,255,0.06),
+    rgba(0,0,0,0.9));
+    z-index:2;
+}
+
+/* UI */
+.container{
+    position:relative;
+    z-index:5;
+    text-align:center;
+    padding:120px 20px 80px;
+}
+
+.top{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:12px;
+    text-align:center;
+    background:rgba(0,0,0,0.6);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    z-index:10;
+    font-weight:900;
+    letter-spacing:6px;
+}
+
+h1{
+    font-size:70px;
+    text-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+
+.button{
+    display:inline-block;
+    margin:10px;
+    padding:12px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.beta{
+    background:white;
+    color:black;
+}
+
+.discord{
+    background:#5865F2;
+    color:white;
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.gallery img{
+    width:300px;
+    border-radius:15px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.7);
+}
+
+.dev{
+    display:inline-block;
+    margin:6px;
+    padding:8px 12px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+<canvas id="particles"></canvas>
+
+<div class="top">SHADOW STRIKE</div>
+
+<div class="container">
+
+<h1>SHADOW STRIKE</h1>
+<p>Upcoming Roblox Game</p>
+
+<a class="button beta" href="#">Get Beta</a>
+<a class="button discord" href="https://discord.gg/uSXRCw32f">Discord</a>
+
+<h2>Screenshots</h2>
+<div class="gallery">
+    <img src="https://i.postimg.cc/pThpZDyZ/Znimok-ekrana-2026-07-04-o-22-15-00.png">
+    <img src="https://i.postimg.cc/v84NrDh6/Znimok-ekrana-2026-07-04-o-22-27-09.png">
+    <img src="https://i.postimg.cc/TYmNsSZ3/Znimok-ekrana-2026-07-04-o-22-27-39.png">
+</div>
+
+<h2>Developers</h2>
+<div>
+<a class="dev">kinglo0630</a>
+<a class="dev">arsenalarmsrace</a>
+<a class="dev">llcat_mokll</a>
+<a class="dev">robloxianb6g7a7e4m</a>
+<a class="dev">s8hha</a>
+<a class="dev">others</a>
+</div>
+
+</div>
+
+<script>
+
+/* FULLSCREEN SAFE RESIZE */
+const bg = document.getElementById("bg");
+const btx = bg.getContext("2d");
+
+const pc = document.getElementById("particles");
+const ctx = pc.getContext("2d");
+
+function resizeAll(){
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    bg.width = w;
+    bg.height = h;
+
+    pc.width = w;
+    pc.height = h;
+}
+
+resizeAll();
+window.addEventListener("resize", resizeAll);
+
+/* STRIPES */
+let offset = 0;
+
+function draw(){
+    let w = bg.width;
+    let h = bg.height;
+
+    btx.clearRect(0,0,w,h);
+    btx.fillStyle="#050505";
+    btx.fillRect(0,0,w,h);
+
+    offset += 0.4;
+
+    for(let i=-w;i<w;i+=50){
+        let x = i + (offset % 50);
+
+        btx.strokeStyle="rgba(255,255,255,0.06)";
+        btx.beginPath();
+        btx.moveTo(x,0);
+        btx.lineTo(x+300,h);
+        btx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+}
+draw();
+
+/* PARTICLES */
+let mouse={x:0,y:0};
+
+window.onmousemove=e=>{
+    mouse.x=e.clientX;
+    mouse.y=e.clientY;
+};
+
+let particles=[];
+
+for(let i=0;i<180;i++){
+    particles.push({
+        x:Math.random()*window.innerWidth,
+        y:Math.random()*window.innerHeight,
+        vx:(Math.random()-0.5)*0.6,
+        vy:(Math.random()-0.5)*0.6,
+        r:1.3
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,pc.width,pc.height);
+
+    for(let p of particles){
+
+        let dx=p.x-mouse.x;
+        let dy=p.y-mouse.y;
+        let dist=Math.sqrt(dx*dx+dy*dy);
+
+        if(dist<150){
+            p.x += dx/dist * 2.5;
+            p.y += dy/dist * 2.5;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x<0)p.x=pc.width;
+        if(p.x>pc.width)p.x=0;
+        if(p.y<0)p.y=pc.height;
+        if(p.y>pc.height)p.y=0;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="white";
+        ctx.fill();
+    }
+
+    requestAnimationFrame(animate);
+}
+animate();
+
+</script>
+
+</body>
+</html>
