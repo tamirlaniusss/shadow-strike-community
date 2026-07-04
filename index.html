@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Strike</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050505;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* ================= 45° STRIPED BACKGROUND ================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+
+    background:
+    repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.06) 0px,
+        rgba(255,255,255,0.06) 1px,
+        transparent 1px,
+        transparent 24px
+    );
+}
+
+/* soft glow overlay */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+
+    background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(255,255,255,0.05), transparent 60%);
+}
+
+/* ================= FADE IN ================= */
+
+.fade{
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeIn 0.9s ease forwards;
+}
+
+.delay1{animation-delay:0.1s;}
+.delay2{animation-delay:0.2s;}
+.delay3{animation-delay:0.3s;}
+.delay4{animation-delay:0.4s;}
+.delay5{animation-delay:0.5s;}
+
+@keyframes fadeIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= TOP BANNER ================= */
+
+.top-banner{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:12px 0;
+
+    background:rgba(0,0,0,0.7);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+
+    font-weight:900;
+    letter-spacing:6px;
+
+    z-index:999;
+
+    animation:fadeIn 1s ease forwards;
+}
+
+/* ================= LAYOUT ================= */
+
+.container{
+    position:relative;
+    z-index:1;
+    padding:120px 20px 60px;
+    max-width:900px;
+    margin:auto;
+}
+
+/* TITLE */
+
+h1{
+    font-size:70px;
+    letter-spacing:6px;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.25),
+        0 0 50px rgba(255,255,255,0.1);
+}
+
+.subtitle{
+    color:#ccc;
+    margin-top:10px;
+}
+
+/* BUTTONS */
+
+.button{
+    display:inline-block;
+    margin:20px 10px;
+    padding:14px 30px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.beta{
+    background:white;
+    color:black;
+}
+
+.discord{
+    background:#5865F2;
+    color:white;
+}
+
+.button:hover{
+    transform:scale(1.05);
+}
+
+/* SECTIONS */
+
+h2{
+    margin-top:60px;
+}
+
+/* DEVELOPERS */
+
+.dev{
+    display:inline-block;
+    margin:8px;
+    padding:8px 14px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.dev:hover{
+    background:rgba(255,255,255,0.1);
+    transform:scale(1.08);
+}
+
+/* GALLERY */
+
+.gallery{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:20px;
+}
+
+.gallery img{
+    width:320px;
+    border-radius:25px;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,0.65),
+        0 10px 20px rgba(0,0,0,0.4),
+        0 0 15px rgba(255,255,255,0.06);
+
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+    box-shadow:
+        0 35px 70px rgba(0,0,0,0.75),
+        0 15px 30px rgba(0,0,0,0.5),
+        0 0 30px rgba(255,255,255,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-banner">SHADOW STRIKE</div>
+
+<div class="container fade delay1">
+
+<h1 class="fade delay1">SHADOW STRIKE</h1>
+
+<p class="subtitle fade delay2">Upcoming Roblox Game</p>
+
+<a class="button beta fade delay3"
+href="https://www.roblox.com/share?code=1c9d13905ba0eb44952a8a942150a77a&type=ExperienceDetails&stamp=1783168145138"
+target="_blank">Beta is Out</a>
+
+<a class="button discord fade delay3"
+href="https://discord.gg/uSXRCw32f"
+target="_blank">Discord</a>
+
+<h2 class="fade delay4">Screenshots</h2>
+
+<div class="gallery fade delay5">
+    <img src="https://i.postimg.cc/pThpZDyZ/Znimok-ekrana-2026-07-04-o-22-15-00.png">
+    <img src="https://i.postimg.cc/v84NrDh6/Znimok-ekrana-2026-07-04-o-22-27-09.png">
+    <img src="https://i.postimg.cc/TYmNsSZ3/Znimok-ekrana-2026-07-04-o-22-27-39.png">
+    <img src="https://i.postimg.cc/W1wWNZNS/Znimok-ekrana-2026-07-04-o-22-27-56.png">
+</div>
+
+<h2 class="fade delay5">Developers</h2>
+
+<div class="fade delay5">
+    <a class="dev" href="#">kinglo0630</a>
+    <a class="dev" href="#">arsenalarmsrace</a>
+    <a class="dev" href="#">llcat_mokll</a>
+    <a class="dev" href="#">robloxianb6g7a7e4m</a>
+    <a class="dev" href="#">s8hha</a>
+    <a class="dev" href="#">cedeeboy0415</a>
+    <a class="dev" href="#">joeykdk</a>
+    <a class="dev" href="#">tamirlaniusss_0</a>
+</div>
+
+</div>
+
+</body>
+</html>
